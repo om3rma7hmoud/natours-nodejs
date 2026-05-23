@@ -252,15 +252,15 @@ GET /api/v1/tours?page=2&limit=10
 
 ### Tour Overview
 
-![Tour Overview](assets/screenshots/tour-overview.png)
+![Tour Overview](assets/screenshots/tour-page-1.png)
 
 ### Tour Gallery
 
-![Tour Gallery](assets/screenshots/tour-gallery.png)
+![Tour Gallery](assets/screenshots/tour-page-2.png)
 
 ### Tour Reviews & Booking
 
-![Tour Reviews & Booking](assets/screenshots/tour-reviews-booking.png)
+![Tour Reviews & Booking](assets/screenshots/tour-page-3.png)
 
 ### User Profile
 
