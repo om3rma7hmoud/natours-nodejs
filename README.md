@@ -169,6 +169,15 @@ npm run dev
 
 ---
 
+## API Documentation & Postman Collection
+
+### Import the Collection
+- Download the collection from `/postman/Natours API.postman_collection.json`
+- Import it in Postman
+- Set the environment variable: `{{url}}` = `http://localhost:3000/`
+
+[Download Postman Collection](./postman/Natours%20API.postman_collection.json)
+
 ## API Features
 
 ### Filtering
