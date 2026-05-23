@@ -1,6 +1,6 @@
 # Natours - Tour Booking Application
 
-A back-end focused tour booking application built with Node.js, Express, MongoDB, and Pug as part of an advanced Node.js learning journey. The application demonstrates authentication, authorization, and full-stack development practices.
+A back-end focused tour booking application built with Node.js, Express, MongoDB, and Pug as part of an advanced Node.js learning journey. The application demonstrates authentication, authorization, advanced query features, secure payment processing with Stripe, and best practices in Node.js development.
 
 ## Features
 
@@ -194,6 +194,28 @@ npm run dev
 
 ---
 
+## API Documentation & Postman Collection
+
+### Import Postman Files
+
+1. **Download the files:**
+   - Collection: [`Natours API.postman_collection.json`](./postman/Natours%20API.postman_collection.json)
+   - Environment: [`Natours Environment.postman_environment.json`](./postman/Natours%20Environment.postman_environment.json)
+
+2. **Import in Postman:**
+   - Open Postman
+   - Click `Import` → Select both JSON files
+   - Choose `Natours Dev Environment` from the environment dropdown
+
+3. **Make Requests:**
+   - Ensure the server is running on `http://localhost:3000`
+   - Start with `Authentication → signup` or `login` to get your JWT token
+   - The token will be automatically saved to the `{{jwt}}` environment variable
+
+### Environment Variables
+- `{{url}}` - Base URL (default: http://localhost:3000/)
+- `{{jwt}}` - JWT Token (automatically set after signup/login)
+
 ## API Features
 
 ### Filtering
@@ -226,29 +248,23 @@ GET /api/v1/tours?page=2&limit=10
 
 ### Home Page
 
-Add screenshot here:
+![Home Page](assets/screenshots/home-page.png)
 
-```md
-![Home Page](screenshots/home.png)
-```
+### Tour Overview
 
-### Tour Details
+![Tour Overview](assets/screenshots/tour-overview.png)
 
-```md
-![Tour Details](screenshots/tour-details.png)
-```
+### Tour Gallery
 
-### Login Page
+![Tour Gallery](assets/screenshots/tour-gallery.png)
 
-```md
-![Login Page](screenshots/login.png)
-```
+### Tour Reviews & Booking
 
-### User Account
+![Tour Reviews & Booking](assets/screenshots/tour-reviews-booking.png)
 
-```md
-![User Account](screenshots/account.png)
-```
+### User Profile
+
+![User Profile](assets/screenshots/profile-page.png)
 
 ---
 
