@@ -1,0 +1,1082 @@
+{
+  "info": {
+    "_postman_id": "a90ef8ad-bb64-46bf-826c-84dafafd4ab6",
+    "name": "Natours API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52249116",
+    "_collection_link": "https://go.postman.co/collection/52249116-a90ef8ad-bb64-46bf-826c-84dafafd4ab6?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "signup",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.environment.set(\"jwt\", pm.response.json().token);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Omar Mahmoud\",\r\n    \"email\": \"test@gmail.com\",\r\n    \"role\": \"admin\",\r\n    \"password\": \"pass1234\",\r\n    \"passwordConfirm\": \"pass1234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}api/v1/users/signup",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "users",
+                "signup"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.environment.set(\"jwt\", pm.response.json().token);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"pass1234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}api/v1/users/login",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.environment.unset('jwt')"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}api/v1/users/logout",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "users",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Forget password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"ommaarhmoud1256@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}api/v1/users/forgotPassword",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "users",
+                "forgotPassword"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{url}}api/v1/users/resetPassword/d738f08bb0441622721561d8e1f3b99987960f9d291ffd277d25ab03c40cbedd",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "users",
+                "resetPassword",
+                "d738f08bb0441622721561d8e1f3b99987960f9d291ffd277d25ab03c40cbedd"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update password",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"passwordCurrent\": \"pass1234\",\r\n    \"password\": \"omar1234\",\r\n    \"passwordConfirm\": \"omar1234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}api/v1/users/updatePassword",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "users",
+                "updatePassword"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Bookings",
+      "item": [
+        {
+          "name": "Get all bookings",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}api/v1/bookings/",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "bookings",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get booking",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}api/v1/bookings/6a0eea2cf0ad095d06045fae",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "bookings",
+                "6a0eea2cf0ad095d06045fae"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create booking",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{url}}api/v1/bookings/",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "bookings",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update booking",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}api/v1/bookings/6a0eea2cf0ad095d06045fae",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "bookings",
+                "6a0eea2cf0ad095d06045fae"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete booking",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}api/v1/bookings/6a0eea2cf0ad095d06045fae",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "bookings",
+                "6a0eea2cf0ad095d06045fae"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Book a tour",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}api/v1/bookings/checkout-session/5c88fa8cf4afda39709c2955",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "bookings",
+                "checkout-session",
+                "5c88fa8cf4afda39709c2955"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reviews",
+      "item": [
+        {
+          "name": "Get all reviews",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}api/v1/tours/5c88fa8cf4afda39709c2955/reviews",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "tours",
+                "5c88fa8cf4afda39709c2955",
+                "reviews"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get review",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}api/v1/reviews/69fc718c89ae6a999e4dbaa7",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "reviews",
+                "69fc718c89ae6a999e4dbaa7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create review",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"review\": \"test review\",\r\n    \"rating\": 4\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}api/v1/tours/5c88fa8cf4afda39709c2955/reviews",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "tours",
+                "5c88fa8cf4afda39709c2955",
+                "reviews"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update review",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"rating\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}api/v1/reviews/69fc718c89ae6a999e4dbaa7",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "reviews",
+                "69fc718c89ae6a999e4dbaa7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete review",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}api/v1/reviews/69fc718c89ae6a999e4dbaa7",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "reviews",
+                "69fc718c89ae6a999e4dbaa7"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tours",
+      "item": [
+        {
+          "name": "Get all tours",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}api/v1/tours",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "tours"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get tour",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Cookies",
+                "value": "jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZjdhZWNmZDc2ZjI2Yjk2YmQxOTVlZSIsImlhdCI6MTc3Nzg5OTgzNCwiZXhwIjoxNzg1Njc1ODM0fQ.FyhIT1HStPO7ybpXRArUtQLNf4__W0_idVX4_d8c-A8",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{url}}api/v1/tours/5c88fa8cf4afda39709c295a",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "tours",
+                "5c88fa8cf4afda39709c295a"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createTour",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n                \"_id\": \"5c88fa8cf4afda39709c295a\",\r\n                \"name\": \"The Snow Adventurer\",\r\n                \"duration\": 4,\r\n                \"maxGroupSize\": 10,\r\n                \"difficulty\": \"difficult\",\r\n                \"ratingsAverage\": 4.5,\r\n                \"ratingsQuantity\": 6,\r\n                \"price\": 997,\r\n                \"summary\": \"Exciting adventure in the snow with snowboarding and skiing\",\r\n                \"description\": \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum!\\nDolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit!\",\r\n                \"imageCover\": \"tour-3-cover.jpg\",\r\n                \"images\": [\r\n                    \"tour-3-1.jpg\",\r\n                    \"tour-3-2.jpg\",\r\n                    \"tour-3-3.jpg\"\r\n                ],\r\n                \"startDates\": [\r\n                    \"2022-01-05T10:00:00.000Z\",\r\n                    \"2022-02-12T10:00:00.000Z\",\r\n                    \"2023-01-06T10:00:00.000Z\"\r\n                ],\r\n                \"secretTour\": false,\r\n                \"__v\": 0,\r\n                \"id\": \"5c88fa8cf4afda39709c295a\"\r\n            }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}api/v1/tours",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "tours"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateTour",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"o\" \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}api/v1/tours/69a4e49b3dadb7fa67052cc6",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "tours",
+                "69a4e49b3dadb7fa67052cc6"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteTour",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "",
+                "value": "",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}api/v1/tours/69adf03cb9901ea6fec5d8ec",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "tours",
+                "69adf03cb9901ea6fec5d8ec"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get tours stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "127.0.0.1:3000/api/v1/tours/tour-stats",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "tours",
+                "tour-stats"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get top five cheap tours",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}api/v1/tours/top-five-cheap",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "tours",
+                "top-five-cheap"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get monthly plan",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n                \"_id\": \"5c88fa8cf4afda39709c295a\",\r\n                \"name\": \"The Snow Adventurer\",\r\n                \"duration\": 4,\r\n                \"maxGroupSize\": 10,\r\n                \"difficulty\": \"difficult\",\r\n                \"ratingsAverage\": 4.5,\r\n                \"ratingsQuantity\": 6,\r\n                \"price\": 997,\r\n                \"summary\": \"Exciting adventure in the snow with snowboarding and skiing\",\r\n                \"description\": \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum!\\nDolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit!\",\r\n                \"imageCover\": \"tour-3-cover.jpg\",\r\n                \"images\": [\r\n                    \"tour-3-1.jpg\",\r\n                    \"tour-3-2.jpg\",\r\n                    \"tour-3-3.jpg\"\r\n                ],\r\n                \"startDates\": [\r\n                    \"2022-01-05T10:00:00.000Z\",\r\n                    \"2022-02-12T10:00:00.000Z\",\r\n                    \"2023-01-06T10:00:00.000Z\"\r\n                ],\r\n                \"secretTour\": false,\r\n                \"__v\": 0,\r\n                \"id\": \"5c88fa8cf4afda39709c295a\"\r\n            }"
+            },
+            "url": {
+              "raw": "{{url}}api/v1/tours/monthly-plan/2021",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "tours",
+                "monthly-plan",
+                "2021"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get tours within",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n                \"_id\": \"5c88fa8cf4afda39709c295a\",\r\n                \"name\": \"The Snow Adventurer\",\r\n                \"duration\": 4,\r\n                \"maxGroupSize\": 10,\r\n                \"difficulty\": \"difficult\",\r\n                \"ratingsAverage\": 4.5,\r\n                \"ratingsQuantity\": 6,\r\n                \"price\": 997,\r\n                \"summary\": \"Exciting adventure in the snow with snowboarding and skiing\",\r\n                \"description\": \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum!\\nDolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit!\",\r\n                \"imageCover\": \"tour-3-cover.jpg\",\r\n                \"images\": [\r\n                    \"tour-3-1.jpg\",\r\n                    \"tour-3-2.jpg\",\r\n                    \"tour-3-3.jpg\"\r\n                ],\r\n                \"startDates\": [\r\n                    \"2022-01-05T10:00:00.000Z\",\r\n                    \"2022-02-12T10:00:00.000Z\",\r\n                    \"2023-01-06T10:00:00.000Z\"\r\n                ],\r\n                \"secretTour\": false,\r\n                \"__v\": 0,\r\n                \"id\": \"5c88fa8cf4afda39709c295a\"\r\n            }"
+            },
+            "url": {
+              "raw": "{{url}}api/v1/tours/tours-within/:distance/center/:latlng/unit/:unit",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "tours",
+                "tours-within",
+                ":distance",
+                "center",
+                ":latlng",
+                "unit",
+                ":unit"
+              ],
+              "variable": [
+                {
+                  "key": "distance",
+                  "value": ""
+                },
+                {
+                  "key": "latlng",
+                  "value": ""
+                },
+                {
+                  "key": "unit",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get distances",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n                \"_id\": \"5c88fa8cf4afda39709c295a\",\r\n                \"name\": \"The Snow Adventurer\",\r\n                \"duration\": 4,\r\n                \"maxGroupSize\": 10,\r\n                \"difficulty\": \"difficult\",\r\n                \"ratingsAverage\": 4.5,\r\n                \"ratingsQuantity\": 6,\r\n                \"price\": 997,\r\n                \"summary\": \"Exciting adventure in the snow with snowboarding and skiing\",\r\n                \"description\": \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum!\\nDolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipisicing elit!\",\r\n                \"imageCover\": \"tour-3-cover.jpg\",\r\n                \"images\": [\r\n                    \"tour-3-1.jpg\",\r\n                    \"tour-3-2.jpg\",\r\n                    \"tour-3-3.jpg\"\r\n                ],\r\n                \"startDates\": [\r\n                    \"2022-01-05T10:00:00.000Z\",\r\n                    \"2022-02-12T10:00:00.000Z\",\r\n                    \"2023-01-06T10:00:00.000Z\"\r\n                ],\r\n                \"secretTour\": false,\r\n                \"__v\": 0,\r\n                \"id\": \"5c88fa8cf4afda39709c295a\"\r\n            }"
+            },
+            "url": {
+              "raw": "{{url}}api/v1/tours/distances/:latlng/unit/:unit",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "tours",
+                "distances",
+                ":latlng",
+                "unit",
+                ":unit"
+              ],
+              "variable": [
+                {
+                  "key": "latlng",
+                  "value": ""
+                },
+                {
+                  "key": "unit",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get all users",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}api/v1/users",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get user",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}api/v1/users/69fb28a1d9d4ecb2b6b9ae01",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "users",
+                "69fb28a1d9d4ecb2b6b9ae01"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create user",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{url}}api/v1/users",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}api/v1/users/69fb28a1d9d4ecb2b6b9ae01",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "users",
+                "69fb28a1d9d4ecb2b6b9ae01"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete user",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Omar Mahmoud admin\"\r\n}"
+            },
+            "url": {
+              "raw": "{{url}}api/v1/users/69fcf464aa28f4f397bcb4b1",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "users",
+                "69fcf464aa28f4f397bcb4b1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get current user",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}api/v1/users/me",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "users",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update current user",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Omar Mahmoud admin\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}api/v1/users/updateMe",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "users",
+                "updateMe"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete current user",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Omar Mahmoud admin\"\r\n}"
+            },
+            "url": {
+              "raw": "{{url}}api/v1/users/deleteMe",
+              "host": [
+                "{{url}}api"
+              ],
+              "path": [
+                "v1",
+                "users",
+                "deleteMe"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
