@@ -325,7 +325,3 @@ GitHub: https://github.com/om3rma7hmoud
 ## License
 
 This project was built for educational and portfolio purposes.
-
-```
-
-```
