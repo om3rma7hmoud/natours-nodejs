@@ -1,6 +1,6 @@
 # Natours - Tour Booking Application
 
-A back-end focused tour booking application built with Node.js, Express, MongoDB, and Pug as part of an advanced Node.js learning journey. The application demonstrates authentication, authorization, payments, file uploads, security practices, and RESTful API development.
+A back-end focused tour booking application built with Node.js, Express, MongoDB, and Pug as part of an advanced Node.js learning journey. The application demonstrates authentication, authorization, and full-stack development practices.
 
 ## Features
 
@@ -90,6 +90,7 @@ natours-nodejs/
 ├── public/
 ├── utils/
 ├── dev-data/
+├── postman/
 │
 ├── app.js
 ├── server.js
@@ -171,12 +172,27 @@ npm run dev
 
 ## API Documentation & Postman Collection
 
-### Import the Collection
-- Download the collection from `/postman/Natours API.postman_collection.json`
-- Import it in Postman
-- Set the environment variable: `{{url}}` = `http://localhost:3000/`
+### Import Postman Files
 
-[Download Postman Collection](./postman/Natours%20API.postman_collection.json)
+1. **Download the files:**
+   - Collection: [`Natours API.postman_collection.json`](./postman/Natours%20API.postman_collection.json)
+   - Environment: [`Natours Environment.postman_environment.json`](./postman/Natours%20Environment.postman_environment.json)
+
+2. **Import in Postman:**
+   - Open Postman
+   - Click `Import` → Select both JSON files
+   - Choose `Natours Dev Environment` from the environment dropdown
+
+3. **Make Requests:**
+   - Ensure the server is running on `http://localhost:3000`
+   - Start with `Authentication → signup` or `login` to get your JWT token
+   - The token will be automatically saved to the `{{jwt}}` environment variable
+
+### Environment Variables
+- `{{url}}` - Base URL (default: http://localhost:3000/)
+- `{{jwt}}` - JWT Token (automatically set after signup/login)
+
+---
 
 ## API Features
 
@@ -209,8 +225,6 @@ GET /api/v1/tours?page=2&limit=10
 ## Screenshots
 
 ### Home Page
-
-Add screenshot here:
 
 ```md
 ![Home Page](screenshots/home.png)
@@ -286,8 +300,7 @@ This project helped me gain practical experience with:
 
 Omar Mahmoud
 
-GitHub:
-https://github.com/om3rma7hmoud
+GitHub: https://github.com/om3rma7hmoud
 
 ---
 
