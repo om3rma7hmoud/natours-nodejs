@@ -2,7 +2,7 @@ import { promisify } from 'util';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 
-import User from '../model/userModel.js';
+import User from '../models/userModel.js';
 import catchAsync from '../utils/catchAsync.js';
 import AppError from '../utils/appError.js';
 import Email from '../utils/email.js';

@@ -1,7 +1,7 @@
 import Stripe from 'stripe';
 import dotenv from 'dotenv';
-import Tour from '../model/tourModel.js';
-import Booking from '../model/bookingModel.js';
+import Tour from '../models/tourModel.js';
+import Booking from '../models/bookingModel.js';
 import catchAsync from '../utils/catchAsync.js';
 import * as factory from './handlerFactory.js';
 

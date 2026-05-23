@@ -5,6 +5,7 @@ A back-end focused tour booking application built with Node.js, Express, MongoDB
 ## Features
 
 ### Authentication & Authorization
+
 - User signup and login
 - JWT-based authentication
 - Password reset via email
@@ -12,6 +13,7 @@ A back-end focused tour booking application built with Node.js, Express, MongoDB
 - Role-based authorization (User, Guide, Lead Guide, Admin)
 
 ### Tour Management
+
 - View all tours
 - View detailed tour information
 - Tour ratings and reviews
@@ -19,26 +21,29 @@ A back-end focused tour booking application built with Node.js, Express, MongoDB
 - Tour statistics and aggregation
 
 ### User Management
+
 - Update user profile information
 - Upload and update profile photo
 - Change password securely
 - View booked tours
 
 ### Reviews & Ratings
+
 - Create reviews
 - Update reviews
 - Delete reviews
 - Tour rating calculations
 
 ### Booking & Payments
+
 - Stripe payment integration
 - Secure checkout process
 - Tour booking management
 
 ### Security
+
 - Data sanitization
 - Rate limiting
-- XSS protection
 - NoSQL injection protection
 - Secure HTTP headers using Helmet
 
@@ -47,18 +52,21 @@ A back-end focused tour booking application built with Node.js, Express, MongoDB
 ## Tech Stack
 
 ### Backend
+
 - Node.js
 - Express.js
 - MongoDB
 - Mongoose
 
 ### Frontend
+
 - Pug
 - HTML5
 - CSS3
 - JavaScript (ES6+)
 
 ### Authentication & Security
+
 - JWT
 - bcryptjs
 - Helmet
@@ -66,31 +74,47 @@ A back-end focused tour booking application built with Node.js, Express, MongoDB
 - Express Mongo Sanitize
 
 ### Payments
+
 - Stripe
 
 ### File Uploads
+
 - Multer
 - Sharp
 
 ### Development Tools
+
 - Parcel
 - Prettier
 
 ---
+
+## Architecture
+
+- MVC Architecture
+- RESTful API Design
+- Server-Side Rendering with Pug
+- Authentication & Authorization Layer
+- Payment Processing with Stripe
 
 ## Project Structure
 
 ```bash
 natours-nodejs/
 │
+├── assets/
+│   └── screenshots/
+│       ├── home-page.png
+│       ├── tour-details.png
+│       └── profile-page.png
 ├── controllers/
+├── dev-data/
 ├── models/
+├── postman/
 ├── routes/
-├── views/
 ├── public/
 ├── utils/
 ├── dev-data/
-├── postman/
 │
 ├── app.js
 ├── server.js
@@ -170,30 +194,6 @@ npm run dev
 
 ---
 
-## API Documentation & Postman Collection
-
-### Import Postman Files
-
-1. **Download the files:**
-   - Collection: [`Natours API.postman_collection.json`](./postman/Natours%20API.postman_collection.json)
-   - Environment: [`Natours Environment.postman_environment.json`](./postman/Natours%20Environment.postman_environment.json)
-
-2. **Import in Postman:**
-   - Open Postman
-   - Click `Import` → Select both JSON files
-   - Choose `Natours Dev Environment` from the environment dropdown
-
-3. **Make Requests:**
-   - Ensure the server is running on `http://localhost:3000`
-   - Start with `Authentication → signup` or `login` to get your JWT token
-   - The token will be automatically saved to the `{{jwt}}` environment variable
-
-### Environment Variables
-- `{{url}}` - Base URL (default: http://localhost:3000/)
-- `{{jwt}}` - JWT Token (automatically set after signup/login)
-
----
-
 ## API Features
 
 ### Filtering
@@ -225,6 +225,8 @@ GET /api/v1/tours?page=2&limit=10
 ## Screenshots
 
 ### Home Page
+
+Add screenshot here:
 
 ```md
 ![Home Page](screenshots/home.png)
@@ -307,3 +309,7 @@ GitHub: https://github.com/om3rma7hmoud
 ## License
 
 This project was built for educational and portfolio purposes.
+
+```
+
+```

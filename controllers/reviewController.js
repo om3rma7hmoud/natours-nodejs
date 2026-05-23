@@ -1,4 +1,4 @@
-import Review from '../model/reviewModel.js';
+import Review from '../models/reviewModel.js';
 import * as factory from './handlerFactory.js';
 
 export const setTourUserIds = (req, res, next) => {

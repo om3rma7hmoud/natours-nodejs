@@ -28,7 +28,18 @@ app.set('views', path.join(__dirname, 'views'));
 // GLOBAL MIDDLEWARES
 
 // Set security HTTP headers
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", 'https://js.stripe.com'],
+        frameSrc: ["'self'", 'https://js.stripe.com'],
+        connectSrc: ["'self'", 'https://api.stripe.com']
+      }
+    }
+  })
+);
 
 // Development logging
 if (process.env.NODE_ENV === 'development') {

@@ -1,6 +1,6 @@
-import Tour from '../model/tourModel.js';
-import User from '../model/userModel.js';
-import Booking from '../model/bookingModel.js';
+import Tour from '../models/tourModel.js';
+import User from '../models/userModel.js';
+import Booking from '../models/bookingModel.js';
 import AppError from '../utils/appError.js';
 import catchAsync from '../utils/catchAsync.js';
 

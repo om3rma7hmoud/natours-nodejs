@@ -1,6 +1,6 @@
 import multer from 'multer';
 import sharp from 'sharp';
-import Tour from '../model/tourModel.js';
+import Tour from '../models/tourModel.js';
 import catchAsync from '../utils/catchAsync.js';
 import * as factory from './handlerFactory.js';
 
